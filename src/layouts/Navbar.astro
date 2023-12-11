@@ -1,9 +1,27 @@
-<nav>
-    <ul>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>4</li>
-        <li>5</li>
-    </ul>
+---
+const data = ["Home", "About", "Contact"];
+---
+
+<nav class="flex w-full justify-between border-b-2 border-white/30">
+  <h1 class="px-2 py-4 text-3xl bg-black">crud-astro</h1>
+  <div class="flex items-center">
+    {
+      data.map((e) => (
+        <p
+          class="px-3 py-4 cursor-pointer hover:bg-red-500 transition duration-300"
+          onclick="handleClick"
+        >
+          {e}
+        </p>
+      ))
+    }
+  </div>
 </nav>
+
+<script>
+  document.querySelectorAll("nav div p").forEach((e) =>
+    e?.addEventListener("click", (e: any) => {
+      alert(e.target.innerHTML);
+    })
+  );
+</script>
