@@ -13,12 +13,14 @@ export const GET: APIRoute = async ({ params, request }) => {
       query: {
         match_all: {},
       },
+      size: 30,
+      from: 0,
     });
 
     return new Response(
       JSON.stringify({
         message: "This was a GET!",
-        data,
+        data: data.hits.hits.map((e) => e._source),
       })
     );
   } catch (error) {

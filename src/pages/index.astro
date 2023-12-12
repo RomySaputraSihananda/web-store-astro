@@ -1,19 +1,18 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { getEnv } from "../helpers";
+import Card from "../components/Card.astro";
 
 const BASE_URL = getEnv("BASE_URL");
 
-const data = await fetch(`${BASE_URL}/api/v1/products.json`);
+const res = await fetch(`${BASE_URL}/api/v1/products.json`);
+const { data } = await res.json();
 ---
 
-<Layout title="Welcome to Astro.">
-  <main class="flex-1">
-    <p
-      class="text-5xl drop-shadow-[0_10px_35px_rgba(255,255,255,0.5)] hover:drop-shadow-[0_10px_35px_rgba(255,255,255,0.9)]"
-    >
-      test
-      <a href="/about">about</a>
-    </p>
+<Layout title="Welcome to Astro." height="">
+  <main
+    class="grid xl:grid-cols-5 md:grid-cols-3 grid-cols-2 place-items-center gap-3"
+  >
+    {data.map((e: any) => <Card data={e} />)}
   </main>
 </Layout>
