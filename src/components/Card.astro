@@ -1,0 +1,25 @@
+---
+interface Props {
+  data: any;
+}
+
+const { data } = Astro.props;
+
+---
+<div class="flex flex-col w-[80%] rounded-lg bg-[#f60] text-white">
+    <div class="backdrop-blur-md bg-white/50 rounded-br-[2.3rem] rounded-t-lg">
+        <img src={data.images[0]} class="object-cover w-full h-56 xl:h-[300px] rounded-t-lg"/>
+        <div class="px-3">
+            <p class="line-clamp-1 pr-5 py-1">{data.title}</p>
+        </div>
+    </div>
+    <div class="p-2">    
+        <p class="line-clamp-1">{data.title}</p>
+        <h1 class="font-bold text-lg">
+            $ {data.price}
+        </h1>
+        <p class="underline">
+            {data.discountPercentage}
+        </p>
+    </div>
+</div>
