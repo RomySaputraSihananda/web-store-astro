@@ -1,11 +1,37 @@
 import type { APIRoute } from "astro";
+import { Client } from "@elastic/elasticsearch";
+import dotenv from "dotenv";
 
-export const GET: APIRoute = ({ params, request }) => {
-  return new Response(
-    JSON.stringify({
-      message: "This was a GET!",
-    })
-  );
+dotenv.config();
+const node = process.env.ELASTICSEARCH_NODE;
+
+const client: Client = new Client({ node });
+
+export const GET: APIRoute = async ({ params, request }) => {
+  try {
+    const data = await client.search({
+      index: "test_products",
+      query: {
+        match_all: {},
+      },
+    });
+
+    return new Response(
+      JSON.stringify({
+        message: "This was a GET!",
+        data,
+      })
+    );
+  } catch (error) {
+    console.error(error);
+
+    return new Response(
+      JSON.stringify({
+        error: "Error fetching data from Elasticsearch",
+      }),
+      { status: 500 }
+    );
+  }
 };
 
 export const POST: APIRoute = ({ request }) => {
