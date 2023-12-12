@@ -1,15 +1,20 @@
 ---
-const data = ["Home", "About", "Contact"];
+const data: string[] = ["About", "Contact"];
 ---
 
 <nav class="flex w-full justify-between border-b-2 border-white/30">
-  <h1 class="px-2 py-4 text-3xl bg-black">crud-astro</h1>
+  <a href="/">
+    <h1 class="px-2 py-4 text-3xl bg-black">crud-astro</h1>
+  </a>
   <div class="flex items-center">
     {
-      data.map((e) => (
-        <p class="px-3 py-4 cursor-pointer hover:bg-red-500 transition duration-300">
+      data.map((e: string) => (
+        <a
+          href={e.toLowerCase()}
+          class="px-3 py-4 cursor-pointer hover:bg-red-500 transition duration-300"
+        >
           {e}
-        </p>
+        </a>
       ))
     }
   </div>

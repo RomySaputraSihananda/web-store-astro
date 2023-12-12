@@ -5,7 +5,7 @@ import Card from "../components/Card.astro";
 
 const BASE_URL = getEnv("BASE_URL");
 
-const res = await fetch(`${BASE_URL}/api/v1/products.json`);
+const res = await fetch(`${BASE_URL}/api/v1/products`);
 const { data } = await res.json();
 ---
 
