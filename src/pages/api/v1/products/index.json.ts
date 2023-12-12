@@ -1,6 +1,6 @@
 import type { APIRoute } from "astro";
 import { Client } from "@elastic/elasticsearch";
-import getEnv from "../../../../helpers/dotenv";
+import { getEnv } from "../../../../helpers";
 
 const node = getEnv("ELASTICSEARCH_NODE");
 

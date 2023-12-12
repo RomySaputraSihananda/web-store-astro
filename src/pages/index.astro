@@ -1,5 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { getEnv } from "../helpers";
+
+const BASE_URL = getEnv("BASE_URL");
+
+const data = await fetch(`${BASE_URL}/api/v1/products.json`);
 ---
 
 <Layout title="Welcome to Astro.">
