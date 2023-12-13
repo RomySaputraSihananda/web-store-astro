@@ -5,14 +5,16 @@ import Card from "../components/Card.astro";
 
 const BASE_URL = getEnv("BASE_URL");
 
-const res = await fetch(`${BASE_URL}/api/v1/products`);
+const res = await fetch(`${BASE_URL}/api/v1/products?page=3`);
 const { data } = await res.json();
 ---
 
 <Layout title="Welcome to Astro." height="">
-  <main
-    class="grid xl:grid-cols-5 md:grid-cols-3 grid-cols-2 place-items-center gap-3"
-  >
-    {data.map((e: any) => <Card data={e} />)}
+  <main class="w-full">
+    <div
+      class="grid xl:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-y-4 gap-2 xl:w-[70%] md:w-[80%] w-[90%] m-auto justify-items-center"
+    >
+      {data.map((e: any) => <Card data={e} />)}
+    </div>
   </main>
 </Layout>
